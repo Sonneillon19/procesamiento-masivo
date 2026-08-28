@@ -34,7 +34,14 @@ public class ListenerLoteProcesamiento implements JobExecutionListener {
         LoteProcesamiento lote = obtenerLote();
 
         lote.setEstado("PROCESANDO");
-        lote.setFechaInicio(LocalDateTime.now());
+
+        /*
+         * Conservamos la fecha de inicio registrada al crear el lote
+         * Si por alguna razón no existe se establece al iniciar el Job
+         */
+        if (lote.getFechaInicio() == null) {
+            lote.setFechaInicio(LocalDateTime.now());
+        }
 
         loteRepository.save(lote);
     }

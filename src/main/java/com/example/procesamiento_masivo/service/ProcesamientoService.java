@@ -55,7 +55,6 @@ public class ProcesamientoService {
                             rutaArchivo.toAbsolutePath().toString()
                     )
                     .addLong("loteId", lote.getId())
-                    .addLong("timestamp", System.currentTimeMillis())
                     .toJobParameters();
 
             jobLauncher.run(
@@ -100,17 +99,20 @@ public class ProcesamientoService {
     }
 
     /**
-     * Genera el registro inicial de auditoría antes de procesar
+     * Genera el registro inicial antes de procesar
      */
     private LoteProcesamiento crearLoteInicial(MultipartFile archivo) {
 
         LoteProcesamiento lote = new LoteProcesamiento();
 
-        lote.setNombreArchivo(archivo.getOriginalFilename());
+        lote.setNombreArchivo(
+                archivo.getOriginalFilename()
+        );
+
         lote.setEstado("PENDIENTE");
+
         lote.setFechaInicio(LocalDateTime.now());
 
-        // Los contadores se actualizarán al finalizar el Job.
         lote.setTotalRegistros(0L);
         lote.setRegistrosExitosos(0L);
         lote.setRegistrosFallidos(0L);
