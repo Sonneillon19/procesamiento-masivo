@@ -1,0 +1,85 @@
+{
+  "info": {
+    "_postman_id": "97c54a4d-5f82-44f0-96ab-b3f7f496a321",
+    "name": "Procesamiento Masivo - API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "2782091"
+  },
+  "item": [
+    {
+      "name": "Procesar archivo CSV",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "archivo",
+              "type": "file",
+              "src": [
+                "/E:/Descargas/proyecto-prueba/procesamiento_masivo/src/main/resources/docs/ejemplo_carga.csv"
+              ]
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/procesamientos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "procesamientos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Consultar Procesamiento",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/procesamientos/10",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "procesamientos",
+            "10"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Consultar errores del procesamiento",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/procesamientos/9/errores",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "procesamientos",
+            "9",
+            "errores"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
