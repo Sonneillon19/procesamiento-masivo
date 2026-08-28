@@ -52,10 +52,12 @@ public class ConfiguracionBatch {
 
     @Bean
     public ItemWriter<ResultadoProcesamiento> escritorResultadoProcesamiento(
-            JdbcTemplate jdbcTemplate) {
+            JdbcTemplate jdbcTemplate,
+            TransaccionRepository transaccionRepository) {
 
         return new EscritorResultadoProcesamiento(
-                jdbcTemplate
+                jdbcTemplate,
+                transaccionRepository
         );
     }
 

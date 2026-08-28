@@ -50,7 +50,10 @@ public class ProcesadorTransaccion
             transaccion.setTipoOperacion(tipoOperacion);
             transaccion.setLote(lote);
 
-            return ResultadoProcesamiento.exitoso(transaccion);
+            return ResultadoProcesamiento.exitoso(
+                    transaccion,
+                    registro
+            );
 
         } catch (IllegalArgumentException ex) {
 
