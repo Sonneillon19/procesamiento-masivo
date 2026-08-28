@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
 public class ConfiguracionBatch {
@@ -51,12 +52,10 @@ public class ConfiguracionBatch {
 
     @Bean
     public ItemWriter<ResultadoProcesamiento> escritorResultadoProcesamiento(
-            TransaccionRepository transaccionRepository,
-            ErrorProcesamientoRepository errorProcesamientoRepository) {
+            JdbcTemplate jdbcTemplate) {
 
         return new EscritorResultadoProcesamiento(
-                transaccionRepository,
-                errorProcesamientoRepository
+                jdbcTemplate
         );
     }
 
