@@ -28,8 +28,9 @@ public class Transaccion {
     @Column(name = "fecha_hora", nullable = false)
     private LocalDateTime fechaHora;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "tipo_operacion", nullable = false, length = 30)
-    private String tipoOperacion;
+    private TipoOperacion tipoOperacion;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "lote_id", nullable = false)
@@ -86,11 +87,11 @@ public class Transaccion {
         this.fechaHora = fechaHora;
     }
 
-    public String getTipoOperacion() {
+    public TipoOperacion getTipoOperacion() {
         return tipoOperacion;
     }
 
-    public void setTipoOperacion(String tipoOperacion) {
+    public void setTipoOperacion(TipoOperacion tipoOperacion) {
         this.tipoOperacion = tipoOperacion;
     }
 

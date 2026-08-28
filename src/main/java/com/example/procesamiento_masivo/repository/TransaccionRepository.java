@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface TransaccionRepository extends JpaRepository<Transaccion, Long> {
 
     boolean existsByIdTransaccion(String idTransaccion);
+
+    long countByLoteId(Long loteId);
 }

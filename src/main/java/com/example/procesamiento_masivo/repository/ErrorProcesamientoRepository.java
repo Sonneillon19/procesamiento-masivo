@@ -8,4 +8,6 @@ import java.util.List;
 public interface ErrorProcesamientoRepository extends JpaRepository<ErrorProcesamiento, Long> {
 
     List<ErrorProcesamiento> findByLoteId(Long loteId);
+
+    long countByLoteId(Long loteId);
 }
