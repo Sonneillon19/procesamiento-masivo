@@ -1,4 +1,4 @@
-CREATE TABLE lotes_procesamiento (
+CREATE TABLE IF NOT EXISTS lotes_procesamiento (
     id BIGSERIAL PRIMARY KEY,
     nombre_archivo VARCHAR(255) NOT NULL,
     total_registros BIGINT NOT NULL DEFAULT 0,
@@ -9,7 +9,7 @@ CREATE TABLE lotes_procesamiento (
     estado VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE transacciones (
+CREATE TABLE IF NOT EXISTS transacciones (
     id BIGSERIAL PRIMARY KEY,
     id_transaccion VARCHAR(100) NOT NULL,
     cuenta_origen VARCHAR(50) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE transacciones (
            REFERENCES lotes_procesamiento(id)
 );
 
-CREATE TABLE errores_procesamiento (
+CREATE TABLE IF NOT EXISTS errores_procesamiento (
     id BIGSERIAL PRIMARY KEY,
     lote_id BIGINT NOT NULL,
     numero_linea BIGINT NOT NULL,
@@ -41,23 +41,23 @@ CREATE TABLE errores_procesamiento (
            REFERENCES lotes_procesamiento(id)
 );
 
-CREATE INDEX idx_transacciones_lote_id
+CREATE INDEX IF NOT EXISTS idx_transacciones_lote_id
     ON transacciones(lote_id);
 
-CREATE INDEX idx_transacciones_cuenta_origen
+CREATE INDEX IF NOT EXISTS idx_transacciones_cuenta_origen
     ON transacciones(cuenta_origen);
 
-CREATE INDEX idx_transacciones_cuenta_destino
+CREATE INDEX IF NOT EXISTS idx_transacciones_cuenta_destino
     ON transacciones(cuenta_destino);
 
-CREATE INDEX idx_transacciones_fecha_hora
+CREATE INDEX IF NOT EXISTS idx_transacciones_fecha_hora
     ON transacciones(fecha_hora);
 
-CREATE INDEX idx_transacciones_tipo_operacion
+CREATE INDEX IF NOT EXISTS idx_transacciones_tipo_operacion
     ON transacciones(tipo_operacion);
 
-CREATE INDEX idx_errores_lote_id
+CREATE INDEX IF NOT EXISTS idx_errores_lote_id
     ON errores_procesamiento(lote_id);
 
-CREATE INDEX idx_lotes_estado
+CREATE INDEX IF NOT EXISTS idx_lotes_estado
     ON lotes_procesamiento(estado);
